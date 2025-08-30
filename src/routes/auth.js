@@ -1,10 +1,12 @@
 import express from 'express'
-import { register } from '../controllers/auth';
+import { register, login } from '../controllers/auth.js';
+import { loginSchema } from '../validation/authValidation.js';
+import { validate } from '../utils/index.js';
 
 
-const routes = express.Router();
+const UserRoutes = express.Router();
 
-routes.post('/register',register)
-routes.post('/login',login)
+UserRoutes.post('/register',register)
+UserRoutes.post('/login',validate(loginSchema),login)
 
-export default routes
+export default UserRoutes

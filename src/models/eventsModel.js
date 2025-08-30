@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 
-const Schema = mongoose.Schema()
+const { Schema, model } = mongoose;
 
-const userSchema = new Schema({
+const eventSchema = new Schema({
     name:{type:String, require:true},
     enentId:{type:String, require:true},
     eventDate:{type:Date, require:true},
@@ -12,4 +12,5 @@ const userSchema = new Schema({
     seats:{type:Number, require:true},
     tag:{type:String, enum:['PUBLISHED', 'CANCELLED'], default :'PENDING'}
 })
-export default mongoose.model("User", userSchema);
+const eventModel = new model("eventModel", eventSchema);
+export default eventModel;

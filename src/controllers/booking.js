@@ -1,7 +1,5 @@
 import eventsModel from "../models/eventsModel.js"
-import { fourDigitRamdomNumber } from "../utils"
-
-
+import { fourDigitRamdomNumber } from "../utils/index.js"
 
 
 export const Booking =async(req,res)=>{

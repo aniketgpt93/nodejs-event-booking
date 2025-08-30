@@ -1,5 +1,5 @@
-import { fourDigitRamdomNumber } from "../utils";
 import Event from '../models/eventsModel.js'
+import { fourDigitRamdomNumber } from '../utils/index.js';
 import { eventSchema } from "../validation/eventValidation.js";
 
 

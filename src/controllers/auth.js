@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { authSchema, loginSchema } from "../validation/authValidation"
+import { authSchema, loginSchema } from "../validation/authValidation.js"
 import User from '../models/user.js'
 
 
@@ -23,9 +23,19 @@ try {
 
 export const login =async(req,res)=>{
 try {
-    const {error} = loginSchema.validate(req.body)
-    if(error) return res.status(401).json({message:error.details[0].message})
+   const { error, value } = loginSchema.validate(req.body, { allowUnknown: false , abortEarly: false });
+   console.log(error)
+// if (error) {
+    if (error) {
+    return res.status(400).json({
+      message: error.details.map(d => d.message).join(", ")
+    });
+  }
+//   return res.status(400).json({ message: error.details[0].message });
+// }
+    // if(error) return res.status(401).json({message:error.details[1].message})
     const {email,password} = req.body;
+console.log({email,password})
     const findUser = await User.findOne({email})
     const hashPassword = bcrypt.compare(password, findUser.password);
      if(!hashPassword) return res.status(401).json({message:"password not match"})

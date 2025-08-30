@@ -1,7 +1,7 @@
 import express from 'express'   
-import { createvent, eventMe, getAllvents, markCancel, markPublish, updateEvent } from '../controllers/event';
-import { protect } from '../middleware/auth';
-import { isAdmin } from '../middleware/RoleMiddleware';
+import { createvent, eventMe, getAllvents, markCancel, markPublish, updateEvent } from '../controllers/event.js';
+import { protect } from '../middleware/auth.js';
+import { isAdmin } from '../middleware/RoleMiddleware.js';
 
 const eventRoutes = express.Router();
 
